@@ -1,0 +1,25 @@
+{% extends 'flatpages/default.html' %}
+
+{% load cache %}
+
+{% block title %}
+Update news
+{% endblock title %}
+
+{% block content %}
+    {% cache 300 update_news_page form.instance.id %}
+    <div class="header header_link">
+        <ul>
+            <li><a href="{% url 'list' %}">На главную</a></li>
+        </ul>
+    </div>
+    <h1>Редактировать новость</h1>
+    <div class="create_div">
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Сохранить" class="button_post">
+        </form>
+    </div>
+    {% endcache %}
+{% endblock content %}
