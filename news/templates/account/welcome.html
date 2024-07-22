@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    {% load cache %}
+    <link href="{% static 'css/sign.css' %}" rel="stylesheet">
+    <title>{% block title %}{% endblock title %}</title>
+</head>
+<body>
+    <h1 align="center">Добро пожаловать на наш новостной портал!!!</h1>
+
+    {% cache 300 main_content %}
+    {% block content %}{% endblock content %}
+    {% endcache %}
+
+    <p align="center">
+        {% cache 600 navigation_links %}
+        <b><a href="{% url 'list' %}">Войти на сайт без регистрации</a></b>
+        <b><a href="/accounts/login/">Войти через Google</a></b>
+        {% endcache %}
+    </p>
+</body>
+</html>
