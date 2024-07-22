@@ -1,0 +1,22 @@
+{% extends 'flatpages/default.html' %}
+
+{% load cache %}
+
+{% block title %}
+Exit
+{% endblock title %}
+
+{% block content %}
+    {% cache 300 exit_page %}
+    <h2>Вы вышли из сайта!!!</h2>
+    <div class="logout_div1">
+        <h3>Вернуться на сайт как незарегистрированный пользователь</h3>
+        <h3><a href="{% url 'list' %}">Перейти на сайт</a></h3>
+        <h3>...</h3>
+        <div>
+            <h3>Войти на сайт под своим именем</h3>
+            <h3><a href="{% url 'login' %}">Войти на сайт</a></h3>
+        </div>
+    </div>
+    {% endcache %}
+{% endblock content %}
